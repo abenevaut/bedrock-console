@@ -1,0 +1,54 @@
+{
+  "name": "abenevaut/bedrock-console",
+  "type": "library",
+  "description": "Bedrock console cli.",
+  "keywords": [
+    "bedrock",
+    "console"
+  ],
+  "license": "GPL-3.0-only",
+  "require": {
+    "php": ">=7.1",
+    "doctrine/dbal": "^2.9",
+    "inpsyde/wp-cli-site-url": "^3.0",
+    "slowprog/composer-copy-file": "^0.3.3",
+    "symfony/console": "^4.4",
+    "symfony/process": "^4.4",
+    "wp-cli/wp-cli": "^2.4"
+  },
+  "require-dev": {
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "abenevaut\\BedrockConsole\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "bin": [
+    "console"
+  ],
+  "scripts": {
+    "post-install-cmd": [
+      "SlowProg\\CopyFile\\ScriptHandler::copy"
+    ],
+    "post-update-cmd": [
+      "SlowProg\\CopyFile\\ScriptHandler::copy"
+    ]
+  },
+  "extra": {
+    "copy-file": {
+      "server.php": "server.php"
+    }
+  }
+}

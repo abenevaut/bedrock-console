@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+use abenevaut\BedrockConsole\Container;
+use Symfony\Component\Console\Application;
+
+require_once dirname(__DIR__) . '/../autoload.php';
+require_once dirname(__DIR__) . '/../../config/application.php';
+
+$application = new Application();
+$application->setCatchExceptions(true);
+$container = new Container();
+
+$commands = $commands ?? [];
+$commands = array_merge($commands, [
+    \abenevaut\BedrockConsole\ServeCommand::class,
+]);
+
+if (count($commands)) {
+  foreach ($commands as $command) {
+      $application->add(new $command($container->toArray()));
+  }
+}
+
+$application->run();
