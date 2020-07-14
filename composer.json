@@ -11,7 +11,6 @@
     "php": ">=7.1",
     "doctrine/dbal": "^2.9",
     "inpsyde/wp-cli-site-url": "^3.0",
-    "slowprog/composer-copy-file": "^0.3.3",
     "symfony/console": "^4.4",
     "symfony/process": "^4.4",
     "wp-cli/wp-cli": "^2.4"
@@ -37,18 +36,5 @@
   "prefer-stable": true,
   "bin": [
     "console"
-  ],
-  "scripts": {
-    "post-install-cmd": [
-      "SlowProg\\CopyFile\\ScriptHandler::copy"
-    ],
-    "post-update-cmd": [
-      "SlowProg\\CopyFile\\ScriptHandler::copy"
-    ]
-  },
-  "extra": {
-    "copy-file": {
-      "server.php": "server.php"
-    }
-  }
+  ]
 }
