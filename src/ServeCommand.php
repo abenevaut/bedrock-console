@@ -33,7 +33,12 @@ class ServeCommand extends Command
             ->setDescription('Serve the application on the PHP development server')
             ->addArgument('host', InputArgument::OPTIONAL, 'host, default: localhost')
             ->addArgument('port', InputArgument::OPTIONAL, 'port, default : 8000')
-            ->addOption('install', 'i', InputArgument::OPTIONAL, 'Install server.php file at project root (required one time after installation)');
+            ->addOption(
+                'install',
+                'i',
+                InputArgument::OPTIONAL,
+                'Install server.php file at project root (required one time after installation)'
+            );
     }
 
     /**
@@ -50,7 +55,7 @@ class ServeCommand extends Command
         }
 
         if (!is_file(ABSPATH . '../../server.php')) {
-            throw new \Exception('You have to install server.php with `serve --install` before using the serve command!');
+            throw new \Exception('You have to run `serve --install` before using the serve command!');
         }
 
         $this->input = $input;
@@ -74,8 +79,9 @@ class ServeCommand extends Command
      */
     protected function serverCommand()
     {
-        return sprintf('%s -S %s:%s %s',
-            (new PhpExecutableFinder)->find(false),
+        return sprintf(
+            '%s -S %s:%s %s',
+            (new PhpExecutableFinder())->find(false),
             $this->host(),
             $this->port(),
             ABSPATH . '../../server.php'
@@ -89,7 +95,7 @@ class ServeCommand extends Command
      */
     protected function host()
     {
-        return $this->input->getArgument('host') ?? 'localhost';;
+        return $this->input->getArgument('host') ?? 'localhost';
     }
 
     /**

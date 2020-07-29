@@ -2,7 +2,6 @@
 
 namespace abenevaut\BedrockConsole;
 
-use abenevaut\BedrockConsole\WpCli;
 use Doctrine\DBAL\DriverManager as DatabaseDriverManager;
 
 class Container
@@ -51,5 +50,3 @@ class Container
         ];
     }
 }
-
-return (new Container())->toArray();

@@ -65,7 +65,7 @@ class WpCli
         $process = new Process($cmd, null, null, $stdinInput, 3600);
         $process->run(function ($type, $buffer) use ($cmd) {
             if (Process::ERR === $type) {
-                throw new \Exception(sprintf('Runtime exception when executing command "%s" with the following buffer "%s"', $cmd, $buffer));
+                throw new \Exception("Runtime exception when executing command \"{$cmd}\"");
             }
         });
 
