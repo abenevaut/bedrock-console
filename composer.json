@@ -13,7 +13,8 @@
     "inpsyde/wp-cli-site-url": "^3.0",
     "symfony/console": "^4.4",
     "symfony/process": "^4.4",
-    "wp-cli/wp-cli": "^2.4"
+    "wp-cli/wp-cli": "^2.4",
+    "wp-cli/wp-cli-bundle": "^2.4"
   },
   "require-dev": {
   },
