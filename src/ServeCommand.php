@@ -5,6 +5,7 @@ namespace abenevaut\BedrockConsole;
 use abenevaut\BedrockConsole\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\PhpExecutableFinder;
 
@@ -31,12 +32,22 @@ class ServeCommand extends Command
         $this
             ->setName('serve')
             ->setDescription('Serve the application on the PHP development server')
-            ->addArgument('host', InputArgument::OPTIONAL, 'host, default: localhost')
-            ->addArgument('port', InputArgument::OPTIONAL, 'port, default : 8000')
+            ->addOption(
+                'host',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'host, default: localhost'
+            )
+            ->addOption(
+                'port',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'port, default: 8080'
+            )
             ->addOption(
                 'install',
-                'i',
-                InputArgument::OPTIONAL,
+                null,
+                InputOption::VALUE_NONE,
                 'Install server.php file at project root (required one time after installation)'
             );
     }
@@ -95,7 +106,7 @@ class ServeCommand extends Command
      */
     protected function host()
     {
-        return $this->input->getArgument('host') ?? 'localhost';
+        return $this->input->getOption('host') ?? 'localhost';
     }
 
     /**
@@ -105,7 +116,7 @@ class ServeCommand extends Command
      */
     protected function port()
     {
-        return ($this->input->getArgument('port') ?? 8000) + $this->portOffset;
+        return ($this->input->getOption('port') ?? 8000) + $this->portOffset;
     }
 
     /**
